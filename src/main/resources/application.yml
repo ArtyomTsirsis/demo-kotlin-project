@@ -1,0 +1,8 @@
+Server:
+  port: 8080
+
+rest:
+  mappings:
+    hello-world: /kotlin/
+    greeting: /kotlin/web-flux/
+  time-out: 10
