@@ -1,4 +1,4 @@
-package com.demo.kotlin.project
+package com.demo.kotlin.project.app
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

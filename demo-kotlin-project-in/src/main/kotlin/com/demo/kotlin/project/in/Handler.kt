@@ -8,11 +8,11 @@ import reactor.core.publisher.Mono
 
 @Component
 class Handler : HandlerFunction<ServerResponse> {
+
     override fun handle(request: ServerRequest): Mono<ServerResponse> {
         return Mono.fromSupplier { request.queryParam("greeting") }
             .map { greet -> greet.get() }
             .flatMap { greet -> ServerResponse.ok().bodyValue(greet) }
     }
-
 
 }
