@@ -1,18 +1,16 @@
 package com.demo.kotlin.project.`in`
 
 import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.server.HandlerFunction
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import reactor.core.publisher.Mono
+import org.springframework.web.reactive.function.server.bodyValueAndAwait
 
 @Component
-class Handler : HandlerFunction<ServerResponse> {
+class Handler {
 
-    override fun handle(request: ServerRequest): Mono<ServerResponse> {
-        return Mono.fromSupplier { request.queryParam("greeting") }
-            .map { greet -> greet.get() }
-            .flatMap { greet -> ServerResponse.ok().bodyValue(greet) }
+    suspend fun handle(request: ServerRequest): ServerResponse {
+        val param = request.queryParam("greeting").get()
+        return ServerResponse.ok().bodyValueAndAwait(param)
     }
 
 }
